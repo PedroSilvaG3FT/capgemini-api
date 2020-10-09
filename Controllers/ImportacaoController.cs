@@ -1,10 +1,10 @@
-using basecs.Services;
+using capgemini_api.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Threading.Tasks;
 
-namespace ExcelFileReceiverAPI.Controllers
+namespace capgemini_api.Controllers
 {
 
     [Route("api/importacao")]
@@ -19,6 +19,9 @@ namespace ExcelFileReceiverAPI.Controllers
             try
             {
                 var result = await importacaoService.FindById(id);
+                if(result == null) {
+                    return NotFound("Não foi possível encontrar a importação com Id: " + id);
+                }
                 return Ok(result);
             }
             catch (Exception ex)

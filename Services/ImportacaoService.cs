@@ -1,16 +1,14 @@
 using capgemini_api.Models;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using OfficeOpenXml;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Threading.Tasks;
 
 
-namespace basecs.Services
+namespace capgemini_api.Services
 {
     public class ImportacaoService
     {
@@ -142,7 +140,7 @@ namespace basecs.Services
             }
             catch (Exception ex)
             {
-                throw new Exception("Não foi possível realizar a busca por Veículo: " + ex.Message);
+                throw new Exception("Não foi possível realizar a busca:" + ex.Message);
             }
         }
 
@@ -150,11 +148,12 @@ namespace basecs.Services
         {
             try
             {
-                return await this._context.Importacao.SingleOrDefaultAsync(c => c.Id == id);
+                var importacao = await this._context.Importacao.SingleOrDefaultAsync(c => c.Id == id);
+                return importacao;
             }
             catch (Exception ex)
             {
-                throw new Exception("Houve um erro ao buscar o Veículo." + ex.Message);
+                throw new Exception("Houve um erro ao buscar: " + ex.Message);
             }
         }
     }
