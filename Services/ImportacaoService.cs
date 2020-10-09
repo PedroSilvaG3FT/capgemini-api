@@ -69,7 +69,7 @@ namespace basecs.Services
 
                                         int compareResult = DateTime.Compare(dateField, currentDate);
 
-                                        if (compareResult <= 0 )
+                                        if (dateField.Day <= currentDate.Day)
                                         {
                                             _listaErros.Add(infoLogDefault + "campo data de entrega não pode ser menor ou igual que o dia atual.");
                                         }
